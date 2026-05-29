@@ -15,14 +15,53 @@
   color: var(--white); font-weight: 700;
 }
 
+/* Carrossel */
+.carouselRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sideArrow {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  background: transparent;
+  color: rgba(255,255,255,.7);
+  font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+  line-height: 1;
+  padding-bottom: 1px;
+}
+.sideArrow:first-child { transform: scaleX(-1); }
+.sideArrow:hover:not(:disabled) { border-color: var(--white); color: var(--white); }
+.sideArrow:disabled { opacity: .25; cursor: default; }
+
+/* O wrap esconde o que transborda */
+.gridWrap {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* O track tem largura dupla e contém dois grids lado a lado */
+.track {
+  display: flex;
+  width: 200%;
+}
+
+/* Cada grid ocupa metade do track (= 100% do wrap) */
 .grid {
+  width: 50%;
+  flex-shrink: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 36px;
 }
 
-.card { }
-
+/* Cards */
 .date {
   font-size: .78rem; color: rgba(255,255,255,.4);
   letter-spacing: .06em; margin-bottom: 14px;
@@ -40,27 +79,28 @@
 }
 
 .leia {
-  color: var(--crimson); font-weight: 700; font-size: .88rem;
+  color: var(--white); font-weight: 700; font-size: .88rem;
   display: inline-flex; align-items: center; gap: 6px; transition: gap .2s;
 }
 .leia:hover { gap: 10px; }
 
-/* Pagination */
+/* Paginação */
 .nav {
   display: flex; align-items: center; justify-content: center;
-  gap: 8px; margin-top: 52px;
+  gap: 8px; margin-top: 48px;
 }
 
 .arrowBtn {
   width: 36px; height: 36px; border-radius: 50%;
   border: 1px solid rgba(255,255,255,.25);
   background: transparent; color: rgba(255,255,255,.7);
-  cursor: pointer; font-size: 1rem;
+  cursor: pointer; font-size: 1.2rem;
   display: flex; align-items: center; justify-content: center;
   transition: border-color .2s, color .2s;
+  line-height: 1; padding-bottom: 1px;
 }
 .arrowBtn:hover:not(:disabled) { border-color: var(--white); color: var(--white); }
-.arrowBtn:disabled { opacity: .3; cursor: default; }
+.arrowBtn:disabled { opacity: .25; cursor: default; }
 
 .pageBtn {
   width: 32px; height: 32px; border-radius: 50%;
@@ -81,5 +121,6 @@
 .showing strong { color: rgba(255,255,255,.65); }
 
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; gap: 32px; }
+  .grid { grid-template-columns: 1fr; }
+  .sideArrow { display: none; }
 }
